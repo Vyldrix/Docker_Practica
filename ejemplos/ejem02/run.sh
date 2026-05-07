@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Creamos el contenedor para nuestra base de datos
-docker run -d --name wordpress-db \
+docker run -d --name ejem02-db \
     --mount source=wordpress-db,target=/var/lib/mysql \
     -e MYSQL_ROOT_PASSWORD=secret \
     -e MYSQL_DATABASE=wordpress \
@@ -10,10 +10,10 @@ docker run -d --name wordpress-db \
     mariadb:10.3.9
 
 # Creamos el contenedor de WordPress
-docker run -d --name wordpress \
-    --link wordpress-db:mysql \
+docker run -d --name ejem02-wp \
+    --link ejem02-db:mysql \
     --mount type=bind,source="$(pwd)"/wordpress,target=/var/www/html \
     -e WORDPRESS_DB_USER=manager \
     -e WORDPRESS_DB_PASSWORD=secret \
-    -p 8080:80 \
+    -p 8082:80 \
     wordpress:4.9.8
