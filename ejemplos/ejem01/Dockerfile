@@ -1,8 +1,11 @@
-# Imagen a usar
-FROM php:7.0-apache
-# copiamos todos los ficheros en el directorio en cuestion
-COPY src/ /var/www/html
-# Exponemos el puerto 80
-EXPOSE 81
-# Quien lo ha realizado
-MAINTAINER JL Gonzalez “jlgs@cifpvirgendegracia.com”
+# 1. Imagen base
+FROM php:8.2-apache
+
+# 2. Copiamos los archivos
+COPY . /var/www/html/
+
+# 3. Exponemos el puerto
+EXPOSE 80
+
+# 4. Metadatos (MAINTAINER está obsoleto, se usa LABEL)
+LABEL maintainer="JL Gonzalez <jlgs@cifpvirgendegracia.com>"

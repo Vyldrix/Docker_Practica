@@ -13,14 +13,14 @@ services:
     depends_on:
       - mariadb
     networks:
-      - lemp-network
+      - red_ejem07
 
   # NGINX
   nginx:
     container_name: nginx
     image: nginx
     ports:
-      - 8080:80
+      - 8086:80
     volumes:
       - /home/informatica/Dropbox/Puertollano 2020-2021/DAW/Temario/docker-tutorial/ejemplos/ejem07/config/nginx:/etc/nginx/conf.d
       - /home/informatica/Dropbox/Puertollano 2020-2021/DAW/Temario/docker-tutorial/ejemplos/ejem07/code/myapp:/var/www/html/myapp
@@ -28,7 +28,7 @@ services:
     depends_on:
       - php7
     networks:
-      - lemp-network
+      - red_ejem07
 
   # MARIADB
   mariadb:
@@ -42,7 +42,7 @@ services:
     ports:
       - 3306:3306
     networks:
-      - lemp-network
+      - red_ejem07
 
   # PHPMYADMIN
   phpmyadmin:
@@ -53,11 +53,11 @@ services:
     depends_on:
       - mariadb
     ports:
-      - 8081:80
+      - 8087:80
     networks:
-      - lemp-network
+      - red_ejem07
 
 # Si queremos que tengan una red propia a otros contenedores
 networks:
-  lemp-network:
+  red_ejem07:
     driver: bridge
