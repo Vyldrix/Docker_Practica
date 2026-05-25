@@ -48,7 +48,7 @@ Al intentar conectar la extensión **Remote Explorer** de VS Code, el agente fal
 
 ---
 
-###🔹 Ejemplo 02: Interpretación y Portabilidad de Scripts
+### 🔹Ejemplo 02: Interpretación y Portabilidad de Scripts
 Se analizó el script ejecutable **run.sh.** Dado que los scripts de terminal **(.sh o .bash)** no son nativos de Windows, su ejecución directa produce errores en la consola estándar.
 
 **Solución aplicada:** Se interpretaron las instrucciones lógicas del script y se consolidaron en un único comando largo adaptado para Windows PowerShell, logrando compilar la imagen (ejem02) y desplegarla sin necesidad de un emulador de terminal Linux.
@@ -57,7 +57,7 @@ Se analizó el script ejecutable **run.sh.** Dado que los scripts de terminal **
 
 ---
 
-###🔹Ejemplo 03: Redes en Docker (WordPress + MariaDB)
+### 🔹Ejemplo 03: Redes en Docker (WordPress + MariaDB)
 En esta sección se desplegó una arquitectura multi-servicio (sitio web conectado a una base de datos relacional) de forma manual.
 
 1. **Análisis de Portabilidad:**
@@ -86,7 +86,7 @@ docker run -d --name wordpress --net=Word_red_ejem03 --link wordpress-db:mysql -
 
 ---
 
-###🔹 Ejemplo 07: Orquestación Declarativa con Docker Compose
+### 🔹Ejemplo 07: Orquestación Declarativa con Docker Compose
 Para solucionar definitivamente los problemas de comandos extensos en PowerShell y la falta de portabilidad, se estructuró el despliegue mediante un archivo **docker-compose.yml.**
 
 **Modificaciones aplicadas al diseño original:**
