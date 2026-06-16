@@ -8,8 +8,8 @@ services:
     container_name: php7
     build: ./php
     volumes:
-      - /home/informatica/Dropbox/Puertollano 2020-2021/DAW/Temario/docker-tutorial/ejemplos/ejem07/config/php:/usr/local/etc/php
-      - /home/informatica/Dropbox/Puertollano 2020-2021/DAW/Temario/docker-tutorial/ejemplos/ejem07/code/myapp:/var/www/html/myapp
+      - ../config/php:/usr/local/etc/php
+      - ../code/myapp:/var/www/html/myapp
     depends_on:
       - mariadb
     networks:
@@ -22,9 +22,9 @@ services:
     ports:
       - 8086:80
     volumes:
-      - /home/informatica/Dropbox/Puertollano 2020-2021/DAW/Temario/docker-tutorial/ejemplos/ejem07/config/nginx:/etc/nginx/conf.d
-      - /home/informatica/Dropbox/Puertollano 2020-2021/DAW/Temario/docker-tutorial/ejemplos/ejem07/code/myapp:/var/www/html/myapp
-      - /home/informatica/Dropbox/Puertollano 2020-2021/DAW/Temario/docker-tutorial/ejemplos/ejem07/logs:/var/log/nginx
+      - ../config/nginx:/etc/nginx/conf.d
+      - ../code/myapp:/var/www/html/myapp
+      - ../logs:/var/log/nginx
     depends_on:
       - php7
     networks:
@@ -35,7 +35,7 @@ services:
     container_name: mariadb
     image: mariadb:latest
     volumes:
-      - /home/informatica/Dropbox/Puertollano 2020-2021/DAW/Temario/docker-tutorial/ejemplos/ejem07/mariadb/data:/var/lib/mysql
+      - ../mariadb/data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=docker_sample

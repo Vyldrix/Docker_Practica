@@ -3,10 +3,10 @@ version: '3.7'
 services:
   reverseproxy:
     image: jwilder/nginx-proxy
-    container_name: reverseproxy
+    container_name: ejem10_reverseproxy
     ports:
-      - '80:80'
-      - '443:443'
+      - '8092:80'
+      - '8443:443'
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     networks:
@@ -17,7 +17,7 @@ services:
   nginx:
     # image: nginx:alpine
     build: ./site1
-    container_name: nginx
+    container_name: ejem10_nginx
     # Como variable le pasamos el nombre del sitio
     environment:
       VIRTUAL_HOST: site1.example.com
@@ -33,7 +33,7 @@ services:
   apache:
     # image: httpd:alpine
     build: ./site2
-    container_name: apache
+    container_name: ejem10_apache
     environment:
       VIRTUAL_HOST: site2.example.com
     # Si queremos montar directorios en modo desarrollo, si no copia lo del dockerfile

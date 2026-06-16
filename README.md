@@ -91,15 +91,52 @@ Para solucionar definitivamente los problemas de comandos extensos en PowerShell
 
 **Modificaciones aplicadas al diseño original:**
 
-Se renombró el identificador de red a **red_ejem07.**
+1. Se renombró el identificador de red a **red_ejem07.**
+2. Se reemplazaron todas las **rutas absolutas de Linux** (ej. `/home/informatica/...`) por **rutas relativas** (ej. `../mariadb/data:/var/lib/mysql`). Esto garantiza la portabilidad y la persistencia de datos en **Windows** usando Docker Desktop.
+3. Se modificaron y expusieron puertos alternativos en el Host de desarrollo para evitar colisiones con servicios nativos activos.
 
-Se modificaron y expusieron puertos alternativos en el Host de desarrollo para evitar colisiones con servicios nativos activos.
-
-Comando de ejecución unificada:
-  ``` powershell
-docker-compose up -d
+Comando de ejecución unificada con nombre de proyecto:
+  ```powershell
+docker-compose -p ejem07 up -d --build
   ```
 
 <img width="454" height="417" alt="Captura de pantalla 2026-05-15 173755" src="https://github.com/user-attachments/assets/c7283505-3614-4b67-b6a5-b21d6ace8e78" />
+
+---
+
+### 🔹Ejemplo 08: Adaptación de Scripts y Nombres de Contenedores
+Se analizó el script original `run.sh` que lanzaba un contenedor de Apache y PHP.
+
+**Modificaciones aplicadas:**
+1. Se cambió el nombre de la imagen y del contenedor de `miapache-php` a **ejem08**.
+2. Se ajustó el puerto expuesto en el host al **8088** (`8088:80`) para prevenir bloqueos por puertos en uso.
+3. Al estar en Windows, los comandos del script fueron ejecutados directamente en PowerShell unidos por punto y coma (`;`), compilando la imagen y ejecutando el contenedor con éxito.
+
+---
+
+### 🔹Ejemplo 09: Resolución de Conflictos Multi-Contenedor
+Se desplegó una arquitectura que involucra un proxy reverso (Nginx), un servidor web genérico y un servidor Apache, definidos en `docker-compose.yml`.
+
+**Modificaciones aplicadas:**
+1. **Prevención de colisiones de nombres:** Se actualizó la propiedad `container_name` para incluir el prefijo del proyecto (`ejem09_reverseproxy`, `ejem09_nginx`, `ejem09_apache`).
+2. **Reasignación de puertos:** Los puertos `8080` y `8081` originales estaban en el rango ocupado, por lo que se movieron a **8090** y **8091**.
+3. Se ejecutó orquestado con su nombre de proyecto:
+  ```powershell
+docker-compose -p ejem09 up -d --build
+  ```
+
+---
+
+### 🔹Ejemplo 10: Proxy Reverso Avanzado e Integración con Docker Socket
+En este ejercicio se orquestaron múltiples servicios donde un contenedor principal (`jwilder/nginx-proxy`) enruta el tráfico hacia distintos servidores web virtuales.
+
+**Modificaciones aplicadas:**
+1. **Protección de Puertos Clave:** Se reemplazaron los puertos críticos `80` y `443` por **8092** y **8443** respectivamente.
+2. **Nombrado de Contenedores:** Se definieron nombres específicos con el prefijo del entorno (`ejem10_reverseproxy`, `ejem10_nginx`, `ejem10_apache`).
+3. **Mapeo de Sockets en Windows:** Se mantuvo intacto el mapeo `- /var/run/docker.sock:/tmp/docker.sock:ro`, validando que Docker Desktop para Windows soporta la comunicación transparente hacia el daemon a través de esta sintaxis heredada de Linux.
+4. Se levantó el entorno con el identificador del proyecto:
+  ```powershell
+docker-compose -p ejem10 up -d --build
+  ```
 
 ---
