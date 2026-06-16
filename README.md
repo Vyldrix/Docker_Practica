@@ -112,6 +112,8 @@ Se analizó el script original `run.sh` que lanzaba un contenedor de Apache y PH
 2. Se ajustó el puerto expuesto en el host al **8088** (`8088:80`) para prevenir bloqueos por puertos en uso.
 3. Al estar en Windows, los comandos del script fueron ejecutados directamente en PowerShell unidos por punto y coma (`;`), compilando la imagen y ejecutando el contenedor con éxito.
 
+<img width="1028" height="569" alt="ejem 08" src="https://github.com/user-attachments/assets/d7a03899-1dea-4db6-abab-32213d0263b1" />
+
 ---
 
 ### 🔹Ejemplo 09: Resolución de Conflictos Multi-Contenedor
@@ -124,6 +126,8 @@ Se desplegó una arquitectura que involucra un proxy reverso (Nginx), un servido
   ```powershell
 docker-compose -p ejem09 up -d --build
   ```
+
+<img width="1025" height="571" alt="ejem 09" src="https://github.com/user-attachments/assets/d3ae700e-a488-425e-bacd-6f4a67e386d6" />
 
 ---
 
@@ -138,5 +142,7 @@ En este ejercicio se orquestaron múltiples servicios donde un contenedor princi
   ```powershell
 docker-compose -p ejem10 up -d --build
   ```
+
+<img width="1023" height="570" alt="ejem 10" src="https://github.com/user-attachments/assets/cb3217c5-e35d-4a22-964b-5bcecc2b85aa" />
 
 ---
